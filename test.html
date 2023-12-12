@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Overlay</title>
+  <style>
+    #productOverlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+    }
+
+    #productContent {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 600px;
+      background-color: #fff;
+      padding: 20px;
+    }
+
+    .product {
+      display: none;
+    }
+
+    #productOverlay.active {
+      display: block;
+    }
+
+    .product.active {
+      display: block;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="productList">
+    <li data-product="product1">Product 1</li>
+    <li data-product="product2">Product 2</li>
+    <li data-product="product3">Product 3</li>
+    <li data-product="product4">Product 4</li>
+    <li data-product="product5">Product 5</li>
+  </ul>
+
+  <div id="productOverlay">
+    <div id="productContent">
+      <span class="close-button" onclick="closeProductOverlay()">&times; Close</span>
+      <!-- Content for each product -->
+      <div id="product1" class="product">
+        <h2>Product 1</h2>
+        <p>Description of Product 1<br>
+        sutdsfauyed<br> jsdgiXWEASVHZxUASJ<BR>HJGDSIYDCXFGUdsx</p>
+      </div>
+      <div id="product2" class="product">
+        <h2>Product 2</h2>
+        <p>Description of Product 2</p>
+      </div>
+      <div id="product3" class="product">
+        <h2>Product 3</h2>
+        <p>Description of Product 3</p>
+      </div>
+      <div id="product4" class="product">
+        <h2>Product 4</h2>
+        <p>Description of Product 4</p>
+      </div>
+      <div id="product5" class="product">
+        <h2>Product 5</h2>
+        <p>Description of Product 5</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const productList = document.getElementById('productList');
+  const productOverlay = document.getElementById('productOverlay');
+  const productContent = document.getElementById('productContent');
+  const products = productContent.getElementsByClassName('product');
+  const lis = productList.getElementsByTagName('li');
+  let contentWidth = 80; // Initial width in percentage
+
+  for (let i = 0; i < lis.length; i++) {
+    lis[i].addEventListener('click', function() {
+      const selectedProduct = this.getAttribute('data-product');
+      const productElement = document.getElementById(selectedProduct);
+
+      if (productElement) {
+        // Show the product overlay and selected product
+        productOverlay.classList.add('active');
+        productElement.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling on the website content
+      }
+    });
+  }
+
+  function closeProductOverlay() {
+    // Hide the product overlay and all products
+    productOverlay.classList.remove('active');
+    for (let i = 0; i < products.length; i++) {
+      products[i].classList.remove('active');
+    }
+    document.body.style.overflow = ''; // Allow scrolling on the website content
+  }
+
+  productOverlay.addEventListener('click', function(event) {
+    if (
+      event.target === productOverlay ||
+      event.target.classList.contains('close-button')
+    ) {
+      closeProductOverlay();
+    }
+  });
+
+  // Function to manually increase the width
+  function increaseWidth() {
+    contentWidth += 10; // Increase width by 10%
+
+    if (contentWidth > 100) {
+      contentWidth = 100; // Limit the width to 100%
+    }
+
+    productContent.style.width = contentWidth + '%';
+  }
+
+  // Bind the increaseWidth function to a button or any user-triggered action
+  const increaseWidthButton = document.getElementById('increaseWidthButton');
+  increaseWidthButton.addEventListener('click', increaseWidth);
+});
+  </script>
+</body>
+
+</html>

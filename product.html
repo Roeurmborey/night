@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Gateway Example</title>
+  <style>
+      /* Some basic styling */
+      .product-box {
+      max-width: 300px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .product-image {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .product-name {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    
+    .product-price {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    
+    .buy-now-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    .buy-now-button:hover {
+      background-color: #45a049;
+    }
+    
+    form {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .failed-payment {
+      border-color: red;
+    }
+    
+    input[type="text"], input[type="number"], input[type="date"], input[type="email"], select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    
+    /* Responsive styles */
+    @media screen and (min-width: 768px) {
+      /* Display 2 product boxes per row on devices with a minimum width of 768px */
+      .product-box {
+        width: 50%;
+        float: left;
+      }
+    }
+    
+    @media screen and (min-width: 1024px) {
+      /* Display 3 product boxes per row on devices with a minimum width of 1024px */
+      .product-box {
+        width: 33.33%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="product-box">
+    <img class="product-image" src="https://images.pexels.com/photos/5365740/pexels-photo-5365740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product 1 Image">
+    <h2 class="product-name">Kawasaki Ninja H2R</h2>
+    <p class="product-price">$49999.99</p>
+    <button class="buy-now-button">Buy Now</button>
+  </div>
+  
+  <div class="product-box">
+    <img class="product-image" src="https://images.pexels.com/photos/14667757/pexels-photo-14667757.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product 2 Image">
+    <h2 class="product-name">Kawasaki Ninja ABS</h2>
+    <p class="product-price">$39999.99</p>
+    <button class="buy-now-button">Buy Now</button>
+  </div>
+  
+  <!-- Add more product boxes for the remaining products -->
+  <div class="product-box">
+    <img class="product-image" src="https://images.pexels.com/photos/13036253/pexels-photo-13036253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product 3 Image">
+    <h2 class="product-name">BMW 1000r</h2>
+    <p class="product-price">$31999.99</p>
+    <button class="buy-now-button">Buy Now</button>
+  </div>
+  
+  <div class="product-box">
+    <img class="product-image" src="https://images.pexels.com/photos/13572453/pexels-photo-13572453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product 4 Image">
+    <h2 class="product-name">Dji Mavic 2</h2>
+    <p class="product-price">$1199.99</p>
+    <button class="buy-now-button">Buy Now</button>
+  </div>
+  
+  <div class="product-box">
+    <img class="product-image" src="https://images.pexels.com/photos/18444696/pexels-photo-18444696/free-photo-of-close-up-of-a-man-flying-a-drone.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product 5 Image">
+    <h2 class="product-name">Faith Mini 3</h2>
+    <p class="product-price">$999.99</p>
+    <button class="buy-now-button">Buy Now</button>
+  </div>
+  
+  <div class="product-box">
+    <img class="product-image" src="https://images.pexels.com/photos/13980814/pexels-photo-13980814.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product 6 Image">
+    <h2 class="product-name">Lamborghini Huracan Evo RWD</h2>
+    <p class="product-price">$212266.99</p>
+    <button class="buy-now-button">Buy Now</button>
+  </div>
+  <!-- Repeat the product box code segment for each additional product -->
+
+  <h2>Payment Details</h2>
+  <form id="paymentForm">
+    <label for="product">Product</label>
+    <select id="product" required>
+      <option value="">Select a product</option>
+      <option value="product1">Kawasaki Ninja H2R</option>
+      <option value="product2">Kawasaki Ninja ABS</option>
+      <option value="product3">BMW 1000r</option>
+      <option value="product4">Dji Mavic 2</option>
+      <option value="product5">Faith Mini 3</option>
+      <option value="product6">Lamborghini Huracan Evo RWD</option>
+    </select>
+    
+    <label for="price">Price</label>
+    <input type="text" id="price" readonly>
+    
+    <label for="cardNumber">Card Number</label>
+    <input type="text" id="cardNumber" placeholder="Enter card number" required>
+    
+    <label for="expiryDate">Expiry Date</label>
+    <input type="date" id="expiryDate" required>
+    
+    <label for="cvv">CVV</label>
+    <input type="text" id="cvv" placeholder="Enter CVV" required>
+    
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter email" required>
+    
+    <input type="submit" value="Submit">
+  </form>
+
+  <br><br><br><br><br>
+    <h1>Contect</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    var productPrices = {
+      product1: 49999.99,
+      product2: 39999.99,
+      product3: 21999.99,
+      product4: 1199.99,
+      product5: 999.99,
+      product6: 212266.99
+    };
+    
+    // Update the price when the product selection changes
+    document.getElementById("product").addEventListener("change", function() {
+      var selectedProduct = this.value;
+      var priceField = document.getElementById("price");
+      priceField.value = productPrices[selectedProduct] || "";
+    });
+    
+    // Handle form submission
+    document.getElementById("paymentForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form from submitting
+      
+      // Retrieve form values
+      var selectedProduct = document.getElementById("product").value;
+      var cardNumber = document.getElementById("cardNumber").value;
+      var expiryDate = document.getElementById("expiryDate").value;
+      var cvv = document.getElementById("cvv").value;
+      var email = document.getElementById("email").value;
+      
+      // Perform validation or additional processing if needed
+      
+      // Create an object to hold the payment data
+      var paymentData = {
+        product: selectedProduct,
+        cardNumber: cardNumber,
+        expiryDate: expiryDate,
+        cvv: cvv,
+        email: email
+      };
+      
+      // Send the payment data to the server for processing
+      // You would typically use AJAX or fetch to send the data to your server-side script
+      
+      // Example AJAX request (requires a server-side script to handle the request)
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "process_payment.php", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Handle the response from the server
+          var response = JSON.parse(xhr.responseText);
+          // Process the response, e.g., display a success message or handle errors
+        }
+      };
+      xhr.send(JSON.stringify(paymentData));
+    });
+     // JavaScript logic for payment processing
+     const paymentForm = document.getElementById("paymentForm");
+     const cardNumberInput = document.getElementById("cardNumberInput");
+    const productBoxes = document.getElementsByClassName("product-box");
+
+    paymentForm.addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      // Simulating payment processing with a delay of 2 seconds
+      setTimeout(function() {
+        const paymentSuccessful = Math.random() < 0.5; // Simulating a random payment success/failure
+        
+        if (paymentSuccessful) {
+          alert("Payment successful!");
+        } else {
+          alert("Payment failed!");
+          for (let i = 0; i < productBoxes.length; i++) {
+            productBoxes[i].classList.add("failed-payment");
+          }
+        }
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
